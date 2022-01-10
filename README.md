@@ -1,4 +1,8 @@
-# Svelte + TS + Vite
+# Svelte + TS + Vite WebComponents
+
+<img src="https://www.somkiat.cc/wp-content/uploads/2021/06/svelte-logo.png"  width="400"/>
+<img src="https://vitejs.dev/logo.svg" width="200" />
+<img src="https://www.webcomponents.org/assets/logo-192x192.png" width="200" />
 
 This template should help get you started developing with Svelte and TypeScript in Vite.
 
