@@ -13,6 +13,13 @@ const getAllFiles = (dir) =>
   }, []);
 const srcFiles = getAllFiles(basePath);
 
+const getFileName = (filePath) => {
+  let wc_arr = filePath.facadeModuleId.split('web_components');
+  const filename = wc_arr[wc_arr.length - 1].replace('.svelte', '.js')
+  const fileName_ok = filename.replace('.ts', '.js')
+  return `${fileName_ok.replace('/', '')}`;
+}
+
 
 
 export default defineConfig({
@@ -30,16 +37,23 @@ export default defineConfig({
     assetsInlineLimit: 0,
     rollupOptions: {
       input: srcFiles,
-      output: [{
-        entryFileNames: (filePath) => {
-          let wc_arr = filePath.facadeModuleId.split('web_components');
-          const filename = process.platform === "win32" ? wc_arr[2].replace('.svelte', '.js') : wc_arr[1].replace('.svelte', '.js')
-          const fileName_ok = filename.replace('.ts', '.js')
-          return `wc${fileName_ok}`; // wc/filename.js
+      output: [
+        {
+          entryFileNames: (filePath) => getFileName(filePath),
+          format: "esm",
+          dir: "dist/esm",
         },
-        format: "esm",
-        dir: "dist",
-      }],
+        {
+          entryFileNames: (filePath) => getFileName(filePath),
+          format: "cjs",
+          dir: "dist/cjs",
+        },
+        {
+          entryFileNames: (filePath) => getFileName(filePath),
+          format: "amd",
+          dir: "dist/amd",
+        }
+      ],
 
     }
   }
