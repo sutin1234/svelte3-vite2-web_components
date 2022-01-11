@@ -39,7 +39,7 @@ export default defineConfig({
           const wc_arr = filePath.facadeModuleId.split('web_components');
           const filename = wc_arr[1].replace('.svelte', '.js')
           const fileName_ok = filename.replace('.ts', '.js')
-          return `wc/${fileName_ok}`; // wc/filename.js
+          return `wc${fileName_ok}`; // wc/filename.js
         },
         format: "esm",
         dir: "dist",
