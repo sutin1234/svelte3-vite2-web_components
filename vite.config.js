@@ -32,7 +32,6 @@ export default defineConfig({
       input: srcFiles,
       output: [{
         entryFileNames: (filePath) => {
-          console.log(process.platform)
           let wc_arr = filePath.facadeModuleId.split('web_components');
           const filename = process.platform === "win32" ? wc_arr[2].replace('.svelte', '.js') : wc_arr[1].replace('.svelte', '.js')
           const fileName_ok = filename.replace('.ts', '.js')
