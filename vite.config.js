@@ -3,6 +3,8 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import path from "path";
 import fs from "fs";
 import multi from '@rollup/plugin-multi-entry';
+import _default from 'rollup-plugin-multi-input';
+import entry from "rollup-plugin-multi-entry";
 
 
 
@@ -10,7 +12,6 @@ let basePath = "./src/lib/web_components";
 const getAllFiles = (dir) =>
   fs.readdirSync(dir).reduce((files, file) => {
     const name = path.join(dir, file);
-    console.log(`input : ${name}`)
     const isDirectory = fs.statSync(name).isDirectory();
     return isDirectory ? [...files, ...getAllFiles(name)] : [...files, name];
   }, []);
@@ -28,16 +29,20 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: 'build/wc',
     emptyOutDir: true,
     minify: true,
     assetsInlineLimit: 0,
     rollupOptions: {
       input: srcFiles,
       output: [{
-        entryFileNames: (filePath) => `[name]/[name].js`,
+        entryFileNames: (filePath) => {
+          const wc_arr = filePath.facadeModuleId.split('web_components');
+          const filename = wc_arr[1].replace('.svelte', '.js')
+          const fileName_ok = filename.replace('.ts', '.js')
+          return `wc/${fileName_ok}`; // wc/filename.js
+        },
         format: "esm",
-        dir: "build/wc",
+        dir: "dist",
       }],
 
     }
