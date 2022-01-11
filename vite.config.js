@@ -2,10 +2,6 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import path from "path";
 import fs from "fs";
-import multi from '@rollup/plugin-multi-entry';
-import _default from 'rollup-plugin-multi-input';
-import entry from "rollup-plugin-multi-entry";
-
 
 
 let basePath = "./src/lib/web_components";
