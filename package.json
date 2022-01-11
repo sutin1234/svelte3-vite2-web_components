@@ -1,8 +1,11 @@
 {
   "name": "svelte-wc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
-  "main": "build/cjs/wc/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/cjs/index.js",
+  "jsdelivr": "dist/cjs/index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
