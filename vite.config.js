@@ -21,6 +21,7 @@ const srcFiles = getAllFiles(basePath);
 export default defineConfig({
   plugins: [
     svelte({
+      exclude: ['./src/App.svelte', './src/lib/Counter.svelte'],
       compilerOptions: {
         customElement: true
       }
